@@ -1,0 +1,14 @@
+怎样在windows中构建gtk开发环境 
+1、先安装DevCPP
+2、安装gtk-win32-devel-2.8.18-rc1.exe，选择Dev-CPP支持
+3、安装gtk-win32-2.8.18-rc1.exe
+4、修改gtk-win32中lib\pkgconfig\cairo.pc中的libpng12为libpng13
+5、在环境变量中增加环境变量PKG_CONFIG_PATH，其变量值为GTK的安装路径中包含gtk+-2.0.pc的路径，D:\GTK\lib\pkgconfig
+6、运行pkg-config --cflags gtk+-2.0，打开DevCPP的“工具/编译选项/编译器”，选择“编译时加入以下命令”，添加命令输出结果；
+7、运行pkg-config --libs gtk+-2.0，打开DevCPP的“工具/编译选项/编译器”，选择“在连接器命令行加入以下命令”，添加命令输出结果
+8、如果需要使用libglade，则将pkg-config --cflags gtk+-2.0和pkg-config --libs gtk+-2.0分别替换为pkg-config --cflags libglade-2.0；pkg-config --libs libglade-2.0
+9、对于自定义的回调函数，如果要libglade程序能正常运行需要在回调函数的申明前加入G_MODULE_EXPORT     都需要配置：【连接命令即可，为下面这个，编译命令无需配置】
+这个可以成功！上面的链接命令有误，，，额，，，无语。。具体原因为没有Windows下
+     的参数: -mms-bitfields 在win下GTK编程，配置如下：下载安装dev c++4.9.9.2、gtk-win32-devel-2.8.14-rc1，修改DEV C++ 工具/编译器选项，在连接器命令行加入以下命令中填入：
+-L"$(GTK_BASEPATH) /lib" -lgtk-win32-2.0 -lgdk-win32-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lpangowin32-1.0 -lgdi32 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -lglib-2.0 -lintl -liconv -mms-bitfields   命令pkg-config --libs gtk+-2.0 结果： -user32 -Wl,-luuid -LC:/Dev-tools/GTK/lib -lgtk-win32-2.0 -lgdk-win32-2.0 -lgdi32 -limm32 -lshell32 -lole32 -latk-1.0 -lgdk_pixbuf-2.0 -lpangowin32-1.0 -lpangocairo-1.0 -lcairo -lpangoft2-1.0 -lfontconfig -lfreetype -lz -lpango-1.0 -lm -lgobject-2.0 -lgmodule-2.0 -lglib-2.0 -lintl -liconv  -mms-bitfields
+

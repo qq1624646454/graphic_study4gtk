@@ -1,0 +1,4 @@
+glade-3.4.3-win32-1.zip是gtk可视化图形界面开发的一种软件工具，可以在里面拖画图形界面
+gtk-2.12.9-win32-2.exe是gtk的runtime，即运行环境，相当于程序运行的虚拟机
+gtk-dev-2.12.9-win32-2.exe是gtk的全部开发环境，包括了glade工具和gtk的runtime；不过这个软件安装完后，产生的glade
+快捷方式的路径要修改才能使用，可以打开快捷方式的属性的目标地址：将glade-2.exe改成glade-3.exe就行了
